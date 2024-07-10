@@ -1,6 +1,8 @@
 from rest_framework import viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from users.models import User
+from users.permissions import IsUser
 from users.serializers import UserSerializer
 
 
@@ -10,6 +12,18 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+    def get_permissions(self):
+        """
+        Проверяет права и исходя из этого разрешает / запрещает доступ эндпоинтам.
+        """
+        if self.action == 'create':
+            self.permission_classes = [AllowAny]
+        if self.action in ['list', 'retrieve']:
+            self.permission_classes = [IsAuthenticated]
+        if self.action in ['update', 'partial_update', 'destroy']:
+            self.permission_classes = [IsAuthenticated, IsUser]
+        return super().get_permissions()
 
     def perform_create(self, serializer):
         """
