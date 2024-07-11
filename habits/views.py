@@ -28,14 +28,30 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
 
-class HabitListAPIView(generics.ListAPIView):
+class HabitPrivetListAPIView(generics.ListAPIView):
     """
     Эндпоинт модели Habit на получение списка привычек текущего пользователя.
     """
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = HabitPaginator
+
+    def get_queryset(self):
+        queryset = Habit.objects.filter(owner=self.request.user)
+        return queryset
+
+
+class HabitPublicListAPIView(generics.ListAPIView):
+    """
+    Эндпоинт модели Habit на получение списка публичных привычек.
+    """
+    serializer_class = HabitSerializers
+    queryset = Habit.objects.all()
+    pagination_class = HabitPaginator
+
+    def get_queryset(self):
+        queryset = Habit.objects.filter(is_public=True)
+        return queryset
 
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
