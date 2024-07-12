@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 from users.models import User
@@ -21,9 +23,10 @@ class Habit(models.Model):
     frequency = models.CharField(choices=HABIT_FREQUENCY, default=HABIT_FREQUENCY[0][0], verbose_name='Периодичность',
                                  db_comment='периодичность выполнения привычки для напоминания в днях', **NULLABLE)
     award = models.CharField(max_length=200, verbose_name='Вознаграждение', **NULLABLE)
-    duration = models.DateTimeField(verbose_name='Время на выполнение',
-                                    db_comment='время, которое предположительно потратит пользователь '
-                                               'на выполнение привычки', **NULLABLE)
+    duration = models.TimeField(verbose_name='Время на выполнение',
+                                default=datetime.time(00, 2, 00),
+                                db_comment='время, которое предположительно потратит пользователь на выполнение '
+                                           'привычки', **NULLABLE)
 
     is_pleasant_habit = models.BooleanField(default=False, verbose_name='Признак приятной привычки')
     is_public = models.BooleanField(verbose_name='Признак публичности', **NULLABLE)
