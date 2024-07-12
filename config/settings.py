@@ -166,3 +166,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://read-and-write.example.com",
 ]
+
+# Celery
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_BACKEND_URL = 'redis://127.0.0.1:6379/0'
