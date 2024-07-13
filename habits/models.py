@@ -5,10 +5,6 @@ from django.db import models
 from users.models import User
 
 NULLABLE = {'blank': True, 'null': True}
-HABIT_FREQUENCY = [
-    ('daily', 'ежедневно'),
-    ('once_a_week', 'раз в неделю'),
-]
 
 
 class Habit(models.Model):
@@ -20,8 +16,9 @@ class Habit(models.Model):
 
     related_habit = models.ForeignKey(to='self', on_delete=models.SET_NULL,
                                       verbose_name='Связанная привычка', **NULLABLE)
-    frequency = models.CharField(choices=HABIT_FREQUENCY, default=HABIT_FREQUENCY[0][0], verbose_name='Периодичность',
-                                 db_comment='периодичность выполнения привычки для напоминания в днях', **NULLABLE)
+    frequency = models.SmallIntegerField(default=1, verbose_name='Периодичность',
+                                         db_comment='периодичность выполнения привычки для напоминания в днях',
+                                         **NULLABLE)
     award = models.CharField(max_length=200, verbose_name='Вознаграждение', **NULLABLE)
     duration = models.TimeField(verbose_name='Время на выполнение',
                                 default=datetime.time(00, 2, 00),
