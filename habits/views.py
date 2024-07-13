@@ -16,7 +16,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
     def perform_create(self, serializer):
         instance = serializer.save()
         instance.owner = self.request.user
-        serializer.save()
+        instance.save()
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):
