@@ -48,9 +48,10 @@ class RelatedHabitValidator:
 
     def __call__(self, value):
         related_habit = dict(value).get(self.field)
-        if not Habit.objects.filter(related_habit=related_habit).exists():
-            raise exceptions.ValidationError('В связанные привычки могут попадать '
-                                             'только привычки с признаком приятной привычки.')
+        if related_habit is not None:
+            if not Habit.objects.filter(related_habit=related_habit).exists():
+                raise exceptions.ValidationError('В связанные привычки могут попадать '
+                                                 'только привычки с признаком приятной привычки.')
 
 
 class IsPleasantHabitValidator:
