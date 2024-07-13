@@ -10,4 +10,5 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             "email",
             "password",
+            "tg_chat_id"
         )
