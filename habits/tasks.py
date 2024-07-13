@@ -16,7 +16,7 @@ def send_reminder():
     habits = Habit.objects.all()
 
     for habit in habits:
-        if habit.time == current_time and habit.frequency > 0:
+        if habit.time.strftime('%X') == current_time and habit.frequency > 0:
             text = (
                 f'Итс тайм! Выполни "{habit.behavior}" в локации {habit.location} '
                 f'и получи {habit.award if habit.award else (habit.related_habit if habit.related_habit
@@ -26,3 +26,5 @@ def send_reminder():
             send_message(text, chat_id)
             habit.frequency -= 1
             habit.save()
+    # print(type(current_time))  # <class 'str'>
+    # print(type(Habit.objects.get(pk=192).time.strftime('%X')))  # <class 'str'>
