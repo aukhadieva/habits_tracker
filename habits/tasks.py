@@ -1,6 +1,8 @@
+import pytz
 from celery import shared_task
-from django.utils import timezone
+from datetime import datetime
 
+from config import settings
 from habits.models import Habit
 from habits.services import send_message
 
@@ -12,7 +14,7 @@ def send_reminder():
     и какие привычки необходимо выполнять.
     Также удаляет привычку, если прошло 7 напоминаний.
     """
-    current_time = timezone.now().strftime('%X')
+    current_time = datetime.now(pytz.timezone(settings.TIME_ZONE)).time().strftime('%X')
     habits = Habit.objects.all()
 
     for habit in habits:
@@ -26,5 +28,3 @@ def send_reminder():
             send_message(text, chat_id)
             habit.frequency -= 1
             habit.save()
-    # print(type(current_time))  # <class 'str'>
-    # print(type(Habit.objects.get(pk=192).time.strftime('%X')))  # <class 'str'>
