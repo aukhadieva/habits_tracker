@@ -12,11 +12,11 @@ class Command(BaseCommand):
         Команда для создания суперюзера.
         """
         superuser = User.objects.create(
-            email='admin@bk.ru',
-            tg_chat_id='12345',
+            email="admin@bk.ru",
+            tg_chat_id="12345",
             is_active=True,
             is_superuser=True,
-            is_staff=True
+            is_staff=True,
         )
-        superuser.set_password(os.getenv('SU_PASSWORD'))
+        superuser.set_password(os.getenv("SU_PASSWORD"))
         superuser.save()

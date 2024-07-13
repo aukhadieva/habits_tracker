@@ -10,6 +10,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     ViewSet для модели User.
     """
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
@@ -17,11 +18,11 @@ class UserViewSet(viewsets.ModelViewSet):
         """
         Проверяет права и исходя из этого разрешает / запрещает доступ эндпоинтам.
         """
-        if self.action == 'create':
+        if self.action == "create":
             self.permission_classes = [AllowAny]
-        if self.action in ['list', 'retrieve']:
+        if self.action in ["list", "retrieve"]:
             self.permission_classes = [IsAuthenticated]
-        if self.action in ['update', 'partial_update', 'destroy']:
+        if self.action in ["update", "partial_update", "destroy"]:
             self.permission_classes = [IsAuthenticated, IsUser]
         return super().get_permissions()
 

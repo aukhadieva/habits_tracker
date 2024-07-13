@@ -11,6 +11,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
     """
     Эндпоинт модели Habit на создание.
     """
+
     serializer_class = HabitSerializers
 
     def perform_create(self, serializer):
@@ -23,6 +24,7 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
     """
     Эндпоинт модели Habit на редактирование.
     """
+
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
@@ -32,6 +34,7 @@ class HabitPrivetListAPIView(generics.ListAPIView):
     """
     Эндпоинт модели Habit на получение списка привычек текущего пользователя.
     """
+
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     pagination_class = HabitPaginator
@@ -45,6 +48,7 @@ class HabitPublicListAPIView(generics.ListAPIView):
     """
     Эндпоинт модели Habit на получение списка публичных привычек.
     """
+
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     pagination_class = HabitPaginator
@@ -58,6 +62,7 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
     """
     Эндпоинт модели Habit на получение одного экземпляра.
     """
+
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
@@ -67,5 +72,6 @@ class HabitDestroyAPIView(generics.DestroyAPIView):
     """
     Эндпоинт модели Habit на удаление.
     """
+
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]

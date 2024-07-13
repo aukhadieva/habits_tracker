@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('habits', '0005_alter_habit_duration'),
+        ("habits", "0005_alter_habit_duration"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='habit',
-            name='frequency',
-            field=models.SmallIntegerField(blank=True, db_comment='периодичность выполнения привычки для напоминания в днях', default=1, null=True, verbose_name='Периодичность'),
+            model_name="habit",
+            name="frequency",
+            field=models.SmallIntegerField(
+                blank=True,
+                db_comment="периодичность выполнения привычки для напоминания в днях",
+                default=1,
+                null=True,
+                verbose_name="Периодичность",
+            ),
         ),
     ]
