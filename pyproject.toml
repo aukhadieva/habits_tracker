@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "habits-tracker"
+version = "0.1.0"
+description = ""
+authors = ["Olga Aukhadieva <sarole4ka@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = ">=4.2.13,<4.3.0"
+ipython = "^8.26.0"
+psycopg2 = "^2.9.9"
+binary = "^1.0.0"
+python-dotenv = "^1.0.1"
+djangorestframework = "^3.15.2"
+setuptools = "^70.3.0"
+djangorestframework-simplejwt = "^5.3.1"
+django-cors-headers = "^4.4.0"
+drf-yasg = "^1.21.7"
+celery = "^5.4.0"
+redis = "^5.0.7"
+requests = "^2.32.3"
+coverage = "^7.6.0"
+django-celery-beat = "^2.6.0"
+flake8 = "^7.1.0"
+black = "^24.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
