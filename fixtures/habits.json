@@ -1,0 +1,98 @@
+[
+{
+    "model": "habits.habit",
+    "pk": 192,
+    "fields": {
+        "owner": 2,
+        "behavior": "выпить стакан воды",
+        "time": "12:00:00",
+        "location": "дома",
+        "related_habit": null,
+        "frequency": 7,
+        "award": "пирожное",
+        "duration": "00:02:00",
+        "is_pleasant_habit": false,
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 193,
+    "fields": {
+        "owner": 2,
+        "behavior": "полистать инсту",
+        "time": "12:30:00",
+        "location": "дома",
+        "related_habit": null,
+        "frequency": 7,
+        "award": null,
+        "duration": "00:02:00",
+        "is_pleasant_habit": true,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 194,
+    "fields": {
+        "owner": 2,
+        "behavior": "посмотреть вакансии",
+        "time": "11:00:00",
+        "location": "дома",
+        "related_habit": 193,
+        "frequency": 1,
+        "award": null,
+        "duration": "00:02:00",
+        "is_pleasant_habit": false,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 195,
+    "fields": {
+        "owner": 5,
+        "behavior": "размяться",
+        "time": "11:30:00",
+        "location": "дома",
+        "related_habit": null,
+        "frequency": 7,
+        "award": "яблоко",
+        "duration": "00:02:00",
+        "is_pleasant_habit": false,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 196,
+    "fields": {
+        "owner": 5,
+        "behavior": "полистать телеграм",
+        "time": "11:50:00",
+        "location": "дома",
+        "related_habit": null,
+        "frequency": 1,
+        "award": null,
+        "duration": "00:02:00",
+        "is_pleasant_habit": true,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 197,
+    "fields": {
+        "owner": 5,
+        "behavior": "выпить прот",
+        "time": "12:00:00",
+        "location": "дома",
+        "related_habit": 196,
+        "frequency": 7,
+        "award": null,
+        "duration": "00:02:00",
+        "is_pleasant_habit": false,
+        "is_public": true
+    }
+}
+]
