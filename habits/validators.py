@@ -1,8 +1,25 @@
-from datetime import timedelta
+import datetime
 
 from rest_framework import exceptions
 
 from habits.models import Habit
+
+
+class AwardValidator:
+    """
+    Кастомный валидатор, который исключает
+    одновременный выбор связанной привычки и указания вознаграждения.
+    """
+
+    def __init__(self, field, field2):
+        self.field = field
+        self.field2 = field2
+
+    def __call__(self, value):
+        award = dict(value).get(self.field)
+        related_habit = dict(value).get(self.field2)
+        if award and related_habit:
+            raise exceptions.ValidationError('Одновременный выбор связанной привычки и вознаграждения запрещен.')
 
 
 class DurationValidator:
@@ -15,46 +32,47 @@ class DurationValidator:
         self.field = field
 
     def __call__(self, value):
-        data = value.get(self.field)
-        if data is not None:
-            if timedelta(minutes=data.minute) > timedelta(minutes=2):
-                raise exceptions.ValidationError('Время выполнения должно быть не больше 2 минут')
+        habits_time = dict(value).get(self.field)
+        if habits_time > datetime.time(minute=2):
+            raise exceptions.ValidationError('Время выполнения должно быть не больше 2 минут')
 
 
 class RelatedHabitValidator:
     """
     Кастомный валидатор, который проверяет,
     чтобы в связанные привычки могли попадать только привычки с признаком приятной привычки.
-    А также, чтобы у приятной привычки не было связанной привычки.
     """
 
     def __init__(self, field):
         self.field = field
 
     def __call__(self, value):
-        data = value.get(self.field)
-        if data is not None:
-            pleasant_habits = Habit.objects.filter(is_pleasant_habit=True)
-            for pleasant_habit in pleasant_habits:
-                if data != pleasant_habit:
-                    raise exceptions.ValidationError('В связанные привычки могут попадать '
-                                                     'только привычки с признаком приятной привычки.')
-            raise exceptions.ValidationError('У приятной привычки не может быть связанной привычки.')
+        related_habit = dict(value).get(self.field)
+        if not Habit.objects.filter(related_habit=related_habit).exists():
+            raise exceptions.ValidationError('В связанные привычки могут попадать '
+                                             'только привычки с признаком приятной привычки.')
 
 
-class AwardValidator:
+class IsPleasantHabitValidator:
     """
     Кастомный валидатор, который проверяет,
-    чтобы у приятной привычки не было вознаграждения.
+    чтобы у приятной привычки не было вознаграждения и связанной привычки.
     """
 
-    def __init__(self, field):
+    def __init__(self, field, fild2, fild3):
         self.field = field
+        self.field2 = fild2
+        self.field3 = fild3
 
     def __call__(self, value):
-        data = value.get(self.field)
-        if data is not None:
-            raise exceptions.ValidationError('У приятной привычки не может быть вознаграждения')
+        is_pleasant_habit = dict(value).get(self.field)
+        award = dict(value).get(self.field2)
+        related_habit = dict(value).get(self.field3)
+        if is_pleasant_habit:
+            if award is not None:
+                raise exceptions.ValidationError('У приятной привычки не может быть вознаграждения.')
+            if related_habit is not None:
+                raise exceptions.ValidationError('У приятной привычки не может быть связанной привычки.')
 
 
 class FrequencyValidator:
@@ -67,9 +85,8 @@ class FrequencyValidator:
         self.field = field
 
     def __call__(self, value):
-        data = value.get(self.field)
-        if data is None:
-            if data != 'daily':
-                raise exceptions.ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней.')
-            elif data != 'once_a_week':
-                raise exceptions.ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней.')
+        frequency = dict(value).get(self.field)
+        if frequency > 7:
+            raise exceptions.ValidationError('Нельзя выполнять привычку более 7 дней.')
+        if frequency == 0:
+            raise exceptions.ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней.')
