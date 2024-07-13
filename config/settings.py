@@ -185,5 +185,5 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 # TG bot
-TG_URL = 'https://api.telegram.org/bot'  #os.getenv('TG_URL')
+TG_URL = os.getenv('TG_URL')
 TGBOT_TOKEN = os.getenv('TGBOT_API_KEY')
