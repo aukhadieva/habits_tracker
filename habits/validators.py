@@ -33,8 +33,9 @@ class DurationValidator:
 
     def __call__(self, value):
         habits_time = dict(value).get(self.field)
-        if habits_time > datetime.time(minute=2):
-            raise exceptions.ValidationError('Время выполнения должно быть не больше 2 минут')
+        if habits_time is not None:
+            if habits_time > datetime.time(minute=2):
+                raise exceptions.ValidationError('Время выполнения должно быть не больше 2 минут')
 
 
 class RelatedHabitValidator:
@@ -87,7 +88,8 @@ class FrequencyValidator:
 
     def __call__(self, value):
         frequency = dict(value).get(self.field)
-        if frequency > 7:
-            raise exceptions.ValidationError('Нельзя выполнять привычку более 7 дней.')
-        if frequency == 0:
-            raise exceptions.ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней.')
+        if frequency is not None:
+            if frequency > 7:
+                raise exceptions.ValidationError('Нельзя выполнять привычку более 7 дней.')
+            if frequency == 0:
+                raise exceptions.ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней.')
