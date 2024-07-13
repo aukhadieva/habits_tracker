@@ -39,7 +39,7 @@ class UserTestCase(test.APITestCase):
         url = reverse("users:users-list")
         response = self.client.get(url)
         data = response.json()
-        result = [{"email": "test@bk.ru", "password": "123"}]
+        result = [{"email": "test@bk.ru", "password": "123", "tg_chat_id": "123"}]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data, result)
 
