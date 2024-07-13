@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'drf_yasg',
+    'django_celery_beat',
 
     'users',
     'habits',
@@ -169,5 +170,16 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Celery
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_BACKEND_URL = 'redis://127.0.0.1:6379/0'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_BACKEND_URL = os.getenv('CELERY_BACKEND_URL')
+
+CELERY_BEAT_SCHEDULE = {
+    'send reminder': {
+        'task': 'habits.tasks.send_reminder',
+        'schedule': timedelta(seconds=10),
+    },
+}
+
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
