@@ -1,11 +1,11 @@
 [
 {
     "model": "habits.habit",
-    "pk": 192,
+    "pk": 228,
     "fields": {
-        "owner": 2,
+        "owner": 5,
         "behavior": "выпить стакан воды",
-        "time": "12:00:00",
+        "time": "2024-07-16T07:00:00Z",
         "location": "дома",
         "related_habit": null,
         "frequency": 7,
@@ -17,11 +17,11 @@
 },
 {
     "model": "habits.habit",
-    "pk": 193,
+    "pk": 229,
     "fields": {
-        "owner": 2,
+        "owner": 5,
         "behavior": "полистать инсту",
-        "time": "12:30:00",
+        "time": "2024-07-16T07:30:00Z",
         "location": "дома",
         "related_habit": null,
         "frequency": 7,
@@ -33,13 +33,13 @@
 },
 {
     "model": "habits.habit",
-    "pk": 194,
+    "pk": 230,
     "fields": {
-        "owner": 2,
+        "owner": 5,
         "behavior": "посмотреть вакансии",
-        "time": "11:00:00",
+        "time": "2024-07-16T11:00:00Z",
         "location": "дома",
-        "related_habit": 193,
+        "related_habit": 229,
         "frequency": 1,
         "award": null,
         "duration": "00:02:00",
@@ -49,11 +49,11 @@
 },
 {
     "model": "habits.habit",
-    "pk": 195,
+    "pk": 231,
     "fields": {
-        "owner": 5,
+        "owner": 2,
         "behavior": "размяться",
-        "time": "11:30:00",
+        "time": "2024-07-16T06:30:00Z",
         "location": "дома",
         "related_habit": null,
         "frequency": 7,
@@ -65,11 +65,11 @@
 },
 {
     "model": "habits.habit",
-    "pk": 196,
+    "pk": 232,
     "fields": {
-        "owner": 5,
+        "owner": 2,
         "behavior": "полистать телеграм",
-        "time": "11:50:00",
+        "time": "2024-07-17T06:50:00Z",
         "location": "дома",
         "related_habit": null,
         "frequency": 1,
@@ -81,13 +81,13 @@
 },
 {
     "model": "habits.habit",
-    "pk": 197,
+    "pk": 233,
     "fields": {
-        "owner": 5,
-        "behavior": "выпить прот",
-        "time": "12:00:00",
+        "owner": 2,
+        "behavior": "выпить витамины",
+        "time": "2024-07-17T07:00:00Z",
         "location": "дома",
-        "related_habit": 196,
+        "related_habit": 232,
         "frequency": 7,
         "award": null,
         "duration": "00:02:00",
