@@ -16,8 +16,8 @@ class Habit(models.Model):
         verbose_name="Действие",
         db_comment="действие, которое представляет собой привычка",
     )
-    time = models.TimeField(
-        verbose_name="Время", db_comment="время, когда необходимо выполнять привычку"
+    time = models.DateTimeField(
+        verbose_name="Время", db_comment="дата старта и время, когда необходимо выполнять привычку"
     )
     location = models.CharField(max_length=200, verbose_name="Место")
 
