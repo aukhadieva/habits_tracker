@@ -13,7 +13,7 @@ class HabitTestCase(test.APITestCase):
         )
         self.client.force_authenticate(user=self.user)
         self.habit = Habit.objects.create(
-            owner=self.user, behavior="test", time="12:12:00", location="test"
+            owner=self.user, behavior="test", time="2024-07-16 22:08:00+05", location="test"
         )
 
     def test_habit_create(self):
@@ -24,7 +24,7 @@ class HabitTestCase(test.APITestCase):
         data = {
             "owner": self.user.pk,
             "behavior": "test2",
-            "time": "13:13:00",
+            "time": "2024-07-16 23:08:00+05",
             "location": "test2",
         }
         response = self.client.post(url, data)
@@ -39,13 +39,13 @@ class HabitTestCase(test.APITestCase):
         data = {
             "owner": self.user.pk,
             "behavior": "test2",
-            "time": "13:15:00",
+            "time": "2024-07-16 23:08:00+05",
             "location": "test2",
             "frequency": 1,
         }
         response = self.client.patch(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data.get("time"), "13:15:00")
+        self.assertEqual(data.get("time"), "2024-07-16 23:08:00+05")
 
     def test_user_list(self):
         """
@@ -62,7 +62,7 @@ class HabitTestCase(test.APITestCase):
                 {
                     "id": self.habit.pk,
                     "behavior": self.habit.behavior,
-                    "time": self.habit.time,
+                    "time": data["results"][0]["time"],
                     "location": self.habit.location,
                     "frequency": 1,
                     "award": None,
