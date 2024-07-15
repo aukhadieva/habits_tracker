@@ -118,7 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru-ru"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Atyrau"
 
 USE_I18N = True
 
@@ -173,7 +174,7 @@ CELERY_BACKEND_URL = os.getenv("CELERY_BACKEND_URL")
 CELERY_BEAT_SCHEDULE = {
     "send reminder": {
         "task": "habits.tasks.send_reminder",
-        "schedule": timedelta(seconds=10),
+        "schedule": timedelta(minutes=1),
     },
 }
 
