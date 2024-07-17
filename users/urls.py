@@ -13,12 +13,12 @@ router.register(r"users", UserViewSet, basename="users")
 
 urlpatterns = [
     path(
-        "api/token/",
+        "login/token/",
         TokenObtainPairView.as_view(permission_classes=[AllowAny]),
         name="token_obtain_pair",
     ),
     path(
-        "api/token/refresh/",
+        "refresh/token/",
         TokenRefreshView.as_view(permission_classes=[AllowAny]),
         name="token_refresh",
     ),

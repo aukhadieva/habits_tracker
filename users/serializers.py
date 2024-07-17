@@ -7,8 +7,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = (
-            "email",
-            "password",
-            "tg_chat_id"
-        )
+        fields = ("email", "password", "tg_chat_id",)
+
+
+class UserListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ("email",)

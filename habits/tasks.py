@@ -16,7 +16,7 @@ def send_reminder():
     и какие привычки необходимо выполнять.
     """
     current_date_time = datetime.now(pytz.timezone(settings.TIME_ZONE))
-    habits = Habit.objects.filter(time__lte=current_date_time, frequency__gt=0)
+    habits = Habit.objects.filter(time__lte=current_date_time)
 
     for habit in habits:
         text = (
@@ -26,6 +26,5 @@ def send_reminder():
 
         chat_id = habit.owner.tg_chat_id
         send_message(text, chat_id)
-        habit.frequency -= 1
-        habit.time = habit.time + relativedelta(days=1)
+        habit.time = habit.time + relativedelta(days=habit.frequency)
         habit.save()
