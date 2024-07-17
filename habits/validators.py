@@ -103,9 +103,5 @@ class FrequencyValidator:
         if frequency is not None:
             if frequency > 7:
                 raise exceptions.ValidationError(
-                    "Нельзя выполнять привычку более 7 дней."
-                )
-            if frequency == 0:
-                raise exceptions.ValidationError(
                     "Нельзя выполнять привычку реже, чем 1 раз в 7 дней."
                 )
