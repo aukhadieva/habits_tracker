@@ -31,7 +31,7 @@ class HabitTestCase(test.APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Habit.objects.all().count(), 2)
 
-    def test_user_update(self):
+    def test_habit_update(self):
         """
         Тест на обновление привычки.
         """
@@ -47,7 +47,7 @@ class HabitTestCase(test.APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("time"), "2024-07-16 23:08:00+05")
 
-    def test_user_list(self):
+    def test_habit_list(self):
         """
         Тест на получение списка привычек.
         """
@@ -77,7 +77,7 @@ class HabitTestCase(test.APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data, result)
 
-    def test_user_public_list(self):
+    def test_habit_public_list(self):
         """
         Тест на получение списка публичных привычек.
         """
