@@ -13,7 +13,7 @@ class Command(BaseCommand):
         """
         superuser = User.objects.create(
             email="admin@bk.ru",
-            tg_chat_id="12345",
+            tg_chat_id="1085575072",
             is_active=True,
             is_superuser=True,
             is_staff=True,
